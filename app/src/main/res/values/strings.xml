@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">I-Met</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_main_fragment">Головна</string>
+    <string name="title_statistics">Статистика</string>
+    <string name="titile_economy">Поради</string>
+    <string name="last_data">Останні дані</string>
+    <string name="type_device_gas">Газ</string>
+    <string name="type_device_water">Вода</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_settings_device">SettingsDeviceActivity</string>
+    <string name="settings_device">Налаштування пристрою</string>
+    <string name="type_device">Тип пристрою:</string>
+    <string name="text_address">Адреса</string>
+    <string name="text_period">Періодичність подачі</string>
+    <string name="text_calibrate">Калібрувати</string>
+    <string name="text_save">Зберети</string>
+    <string name="text_calibrating">Калібрування</string>
+    <string name="title_activity_calibrating">CalibratingActivity</string>
+</resources>
