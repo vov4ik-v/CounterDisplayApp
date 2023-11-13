@@ -17,7 +17,7 @@ import com.spm.vasylyshyn.counterdisplayapp.MainFragment.Companion.uploadDevice
 import java.lang.String
 import kotlin.Int
 
-class CardScrollAdapter internal constructor(context: Activity?, devices: ArrayList<Device>) :
+class CardScrollAdapter internal constructor(context: Activity?, devices: List<Device>) :
     ArrayAdapter<Device?>(context!!, 0, devices as List<Device?>) {
 
 
@@ -46,15 +46,20 @@ class CardScrollAdapter internal constructor(context: Activity?, devices: ArrayL
         val settingButton: ImageButton = listItemView.findViewById(R.id.settingButton)
         settingButton.setOnClickListener{
             val serialNumber:TextView = listItemView.findViewById(R.id.serialNumberDeviceOnItem)
-            for (i in uploadDevice()) {
-                if (i.serialNumber === Integer.valueOf(serialNumber.text.toString())) {
-                    Log.d("ok", String.valueOf(i.typeDevice))
-                    val intent1 = Intent(context, SettingsDeviceActivity::class.java)
-                    intent1.putExtra("serialNumber", i.serialNumber)
-                    startActivity(context,intent1, Bundle())
-                    break
+            uploadDevice { devices ->
+                for (i in devices) {
+                    if (i.serialNumber === Integer.valueOf(serialNumber.text.toString())) {
+                        Log.d("ok", String.valueOf(i.typeDevice))
+                        val intent1 = Intent(context, SettingsDeviceActivity::class.java)
+                        intent1.putExtra("serialNumber", i.serialNumber)
+                        intent1.putExtra("address", i.address)
+                        intent1.putExtra("frequency", i.frequency)
+                        startActivity(context,intent1, Bundle())
+                        break
+                    }
                 }
             }
+
 
         }
         return listItemView

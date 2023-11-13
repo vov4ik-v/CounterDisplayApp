@@ -1,7 +1,6 @@
 package com.spm.vasylyshyn.counterdisplayapp
 
 import java.time.LocalDateTime
-import java.util.Date
 
 class Device {
     var typeDevice: TypeDevice? = null
@@ -10,8 +9,8 @@ class Device {
     var price:Int = 0
     var frequency:Long = 0
     var serialNumber = 0
-    var displayCounts: List<DisplayCount>? = null
-    var createdData: LocalDateTime = LocalDateTime.now()
+    var listDisplayCounts: List<DisplayCount> = ArrayList<DisplayCount>()
+    var createdData: LocalDateTime? = null
 
     constructor()
     constructor(
@@ -31,6 +30,8 @@ class Device {
         price: Int,
         frequency: Long,
         serialNumber: Int,
+        mapDisplayCounts: List<DisplayCount>,
+        createdData: LocalDateTime?
     ) {
         this.typeDevice = typeDevice
         this.cantoraName = cantoraName
@@ -38,6 +39,8 @@ class Device {
         this.price = price
         this.frequency = frequency
         this.serialNumber = serialNumber
+        this.listDisplayCounts = mapDisplayCounts
+        this.createdData = createdData
     }
 
 

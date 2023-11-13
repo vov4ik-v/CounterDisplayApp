@@ -21,14 +21,15 @@ class SettingsDeviceActivity : AppCompatActivity() {
             ArrayAdapter<String>(applicationContext, R.layout.spinner_item, arrayPeriodType)
         periodType.adapter = adapterSpinner
         val serialNumberDevice = intent.getIntExtra("serialNumber", 0)
+        val addressDevice = intent.getStringExtra("address")
+        val frequencyDevice = intent.getLongExtra("frequency",0)
         if (serialNumberDevice != 0) {
             val editPeriod: EditText = findViewById(R.id.numberPeriod)
-            editPeriod.setText("5")
+            editPeriod.setText(frequencyDevice.toString())
             val typeDevice: TextView = findViewById(R.id.settingTypeDevice)
             typeDevice.text = serialNumberDevice.toString()
-            val textAddress = "ADDRESS"
             val editAddress: EditText = findViewById(R.id.editAdressDevice)
-            editAddress.setText(textAddress)
+            editAddress.setText(addressDevice)
         }
 //        buttonCalibrateDevice.setOnClickListener(View.OnClickListener {
 //            val intent = Intent(applicationContext, CalibratingActivity::class.java)

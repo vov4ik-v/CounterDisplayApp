@@ -1,8 +1,5 @@
 package com.spm.vasylyshyn.counterdisplayapp
 
-import java.text.DateFormat
-import java.time.LocalDateTime
-
 data class DeviceDto(
     val numberOfDevice:Int,
     val cantoraName:String,
@@ -10,6 +7,6 @@ data class DeviceDto(
     val price:Int,
     val address:String,
     val frequency:Long,
-    val displayCounts: List<DisplayCount>,
-    val createdData: LocalDateTime,
+    val displayCounts: List<DisplayCountDto>,
+    val createdDate: String,
 )

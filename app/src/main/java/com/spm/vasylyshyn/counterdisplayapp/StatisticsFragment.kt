@@ -10,6 +10,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import it.sephiroth.android.library.widget.HListView
+import java.util.Date
 import java.util.concurrent.ExecutionException
 
 private const val ARG_PARAM1 = "param1"
@@ -54,7 +55,7 @@ class StatisticsFragment : Fragment() {
 
     fun getData() {
         try {
-            val map: MutableMap<String, Int> = HashMap()
+            val map: MutableMap<Date, Int> = HashMap()
 //            val jsonObject: JsonObject =
 //                GetJson().AsJSONObject("http://imet.pythonanywhere.com/get_data?email=alex@gmail.com&type=gas&counter=3663434534&week=week")
 //            val set: Set<Map.Entry<String, com.google.gson.JsonElement>> = jsonObject.entrySet()
@@ -63,14 +64,13 @@ class StatisticsFragment : Fragment() {
 //                Log.d("ok", i.value.toString().substring(1, i.value.toString().length - 1))
 //                map[i.key] = i.value.toString().substring(1, i.value.toString().length - 1).toInt()
 //            }
-            map["1"] = 123
-            map["2"] = 223
-            map["3"] = 323
-            map["4"] = 423
-//            val device = Device("hello", TypeDevice.GAS, 56)
-//            device.mapData = map
-//            arrayDevice.add(device)
-//            Log.d("ok", jsonObject.toString())
+//            map["12.10.2002"] = 123
+//            map["2"] = 223
+//            map["3"] = 323
+//            map["4"] = 423
+            val device = Device(TypeDevice.GAS, "Striska 12", 56)
+//            device.listDisplayCounts = map // edit
+            arrayDevice.add(device)
         } catch (e: ExecutionException) {
             e.printStackTrace()
         } catch (e: InterruptedException) {

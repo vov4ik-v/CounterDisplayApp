@@ -13,6 +13,7 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import java.util.Date
 
 class LastDataOfDeviceAdapter(context: Activity?, devices: ArrayList<Device>) : ArrayAdapter<Device>(
     context!!,0,devices){
@@ -25,34 +26,34 @@ class LastDataOfDeviceAdapter(context: Activity?, devices: ArrayList<Device>) : 
         val current = getItem(position)
         val lineChart: LineChart = listView.findViewById(R.id.lineChartDeviceData)
         val listEntry: ArrayList<Entry> = ArrayList<Entry>()
-        val map: List<DisplayCount> = current?.displayCounts!!
+//        val map: Map<Date,Int> = current?.listDisplayCounts!!
         var k = 0f
         val arrayLabels = ArrayList<String>()
-        val array = ArrayList<Int>()
-//        for (i in map.) {
-//            array.add(i.toInt())
+        val array = ArrayList<Date>()
+//        for (i in map.keys) {
+//            array.add(i)
 //        }
-//        arrayLabels.add("29/11/2018")
-//        arrayLabels.add("30/11/2018")
-//        arrayLabels.add("1/12/2018")
-//        arrayLabels.add("2/12/2018")
-//        arrayLabels.add("3/12/2018")
-//        arrayLabels.add("4/12/2018")
-//        arrayLabels.add("5/12/2018")
-        for (i in array) {
-            listEntry.add(Entry(k, (2.2+k).toFloat()))
-            k += 1
-        }
+        arrayLabels.add("29/11/2018")
+        arrayLabels.add("30/11/2018")
+        arrayLabels.add("1/12/2018")
+        arrayLabels.add("2/12/2018")
+        arrayLabels.add("3/12/2018")
+        arrayLabels.add("4/12/2018")
+        arrayLabels.add("5/12/2018")
+//        for (i in array) {
+//            listEntry.add(Entry(i, (2.2+k).toFloat()))
+//            k += 3
+//        }
         val dataSet = LineDataSet(listEntry, "gas")
         dataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
-        dataSet.setDrawValues(false)
+        dataSet.setDrawValues(true)
         dataSet.setDrawFilled(true)
         dataSet.fillAlpha = 170
-        if (current.typeDevice === TypeDevice.GAS) {
-            dataSet.fillColor = ContextCompat.getColor(context, R.color.gasChart)
-        } else {
-            dataSet.fillColor = ContextCompat.getColor(context, R.color.waterChart)
-        }
+//        if (current.typeDevice === TypeDevice.GAS) {
+//            dataSet.fillColor = ContextCompat.getColor(context, R.color.gasChart)
+//        } else {
+//            dataSet.fillColor = ContextCompat.getColor(context, R.color.waterChart)
+//        }
         val lineData = LineData(dataSet)
         val xAxis: XAxis = lineChart.xAxis
         val yAxis: YAxis = lineChart.axisLeft
