@@ -87,108 +87,82 @@ class MainFragment() : Fragment() {
         private val client = OkHttpClient()
 
 
-//        fun uploadDevice(): ArrayList<Device> {
-//            val retrofit = Retrofit.Builder()
-//                .baseUrl("http://192.168.31.86:8080/api/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build()
-//            val apiService = retrofit.create(UserService::class.java)
-//            val arrayDevices: ArrayList<Device> = ArrayList();
-//
-//            apiService.getDevicesForCurrentUser().enqueue(object :
-//                retrofit2.Callback<List<DeviceDto>> {
-//                override fun onResponse(
-//                    call: retrofit2.Call<List<DeviceDto>>,
-//                    response: retrofit2.Response<List<DeviceDto>>
-//                ) {
-//                    for(el in response.body()!!) {
-//                        arrayDevices.add(Device(TypeDevice.GAS,el.cantoraName,el.address,el.price,el.frequency,el.numberOfDevice))
-//                    }
-//                    Log.d("Test response", arrayDevices[0].address.toString())
-//
-//                }
-//
-//                override fun onFailure(call: retrofit2.Call<List<DeviceDto>>, t: Throwable) {
-//                    Log.d("Test response", t.message.toString())
-//                }
-//            })
-////            for (i in set) {
-////                Log.d("ok", i.toString())
-////                Log.d("ok", i.value.toString().substring(1, i.value.toString().length - 1))
-////                map[i.key] = i.value.toString().substring(1, i.value.toString().length - 1).toInt()
-////            }
-//            for(ar in arrayDevices){
-//                Log.d("el arr devices", ar.toString())
-//
-//            }
-//            val arrayDevice: ArrayList<Device> = ArrayList()
-//            arrayDevice.add(Device(TypeDevice.GAS,"Stree1", "Street11",200,2,421321))
-//            arrayDevice.add(Device(TypeDevice.GAS,"Stree1", "Street11",200,2,421321))
-//            arrayDevice.add(Device(TypeDevice.GAS,"Stree1", "Street11",200,2,421321))
-//            return arrayDevice
-//        }
+        private fun getHeaderMap(): Map<String, String> {
+            val headerMap = mutableMapOf<String, String>()
+            val token = LoginActivity.token
+            headerMap["Authorization"] = token
+            return headerMap
+        }
 
         fun uploadDevice(callback: (List<Device>) -> Unit) {
+            Log.d("in upload device", "I`m here")
             val gson = GsonBuilder()
                 .create()
             val retrofit = Retrofit.Builder()
                 .baseUrl("http://10.10.10.8:8080/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
-
             val apiService = retrofit.create(UserService::class.java)
 
-            apiService.getDevicesForCurrentUser().enqueue(object : Callback<List<DeviceDto>> {
-                override fun onResponse(
-                    call: Call<List<DeviceDto>>,
-                    response: Response<List<DeviceDto>>
-                ) {
-                    if (response.isSuccessful) {
-                        val arrayDevice: ArrayList<Device> = ArrayList()
-                        for (el in response.body()!!) {
-                            val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm", Locale.ENGLISH)
-                            val date = LocalDateTime.parse(el.createdDate, formatter)
-                            val displayCounts:ArrayList<DisplayCount> = ArrayList()
-                            val typeForDevice: TypeDevice = when (el.counterType) {
-                                "GAS" -> {
-                                    TypeDevice.GAS
-                                }
+            apiService.getDevicesForCurrentUser(getHeaderMap())
+                .enqueue(object : Callback<List<DeviceDto>> {
+                    override fun onResponse(
+                        call: Call<List<DeviceDto>>,
+                        response: Response<List<DeviceDto>>
+                    ) {
+                        if (response.isSuccessful) {
+                            val arrayDevice: ArrayList<Device> = ArrayList()
+                            for (el in response.body()!!) {
+                                val formatter =
+                                    DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm", Locale.ENGLISH)
+                                val date = LocalDateTime.parse(el.createdDate, formatter)
+                                val displayCounts: ArrayList<DisplayCount> = ArrayList()
+                                val typeForDevice: TypeDevice = when (el.counterType) {
+                                    "GAS" -> {
+                                        TypeDevice.GAS
 
-                                "WATER" -> {
-                                    TypeDevice.WATER
-                                }
+                                    }
 
-                                else -> {
-                                    TypeDevice.LIGHT
+                                    "WATER" -> {
+                                        TypeDevice.WATER
+                                    }
+
+                                    else -> {
+                                        TypeDevice.LIGHT
+                                    }
                                 }
-                            }
-                            for(displayCount in el.displayCounts){
-                                val displayCountCreatedDate = LocalDateTime.parse(displayCount.createdDate,formatter)
-                                val displayCountForDevice: DisplayCount = DisplayCount(displayCount.id, displayCount.displayCount,displayCountCreatedDate)
-                                displayCounts.add(displayCountForDevice)
-                            }
-                            arrayDevice.add(
-                                Device(
-                                    typeForDevice,
-                                    cantoraName = el.cantoraName,
-                                    address = el.address,
-                                    price = el.price,
-                                    frequency = el.frequency,
-                                    serialNumber = el.numberOfDevice,
-                                    mapDisplayCounts = displayCounts,
-                                    createdData = date
+                                for (displayCount in el.displayCounts) {
+                                    val displayCountCreatedDate =
+                                        LocalDateTime.parse(displayCount.createdDate, formatter)
+                                    val displayCountForDevice: DisplayCount = DisplayCount(
+                                        displayCount.id,
+                                        displayCount.displayCount,
+                                        displayCountCreatedDate
+                                    )
+                                    displayCounts.add(displayCountForDevice)
+                                }
+                                arrayDevice.add(
+                                    Device(
+                                        typeForDevice,
+                                        cantoraName = el.cantoraName,
+                                        address = el.address,
+                                        price = el.price,
+                                        frequency = el.frequency,
+                                        serialNumber = el.numberOfDevice,
+                                        mapDisplayCounts = displayCounts,
+                                        createdData = date
+                                    )
                                 )
-                            )
+                            }
+                            callback(arrayDevice)
                         }
-                        callback(arrayDevice)
                     }
-                }
 
-                override fun onFailure(call: Call<List<DeviceDto>>, t: Throwable) {
-                    Log.d("Test response", t.message.toString())
-                    callback(emptyList())
-                }
-            })
+                    override fun onFailure(call: Call<List<DeviceDto>>, t: Throwable) {
+                        Log.d("Test response", t.message.toString())
+                        callback(emptyList())
+                    }
+                })
         }
     }
 

@@ -3,6 +3,7 @@ package com.spm.vasylyshyn.counterdisplayapp
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.HeaderMap
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -14,8 +15,7 @@ interface UserService {
     @GET("user/allUser")
     fun getAllUsers(): Call<List<User>>
     @GET("user/getDevicesForCurrentUser")
-    @Headers("Authorization:BEARER eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpZXMiOlt7ImF1dGhvcml0eSI6IlVTRVIifV0sImlkIjoiMSIsImlhdCI6MTY5OTc4ODc3NCwidXNlcm5hbWUiOiJ2YXNpbGl3aW5AZ21haWwuY29tIn0.xr6YJPvh_1y_1DaraG3_xfPbhCE3POnBh91Jrdz-eetPQtAGiv56nIFN7nOYwlqh7Vf2jB4-G4UNorrBOVd_XA")
-        fun getDevicesForCurrentUser(): Call<List<DeviceDto>>
+        fun getDevicesForCurrentUser(@HeaderMap headers: Map<String, String>): Call<List<DeviceDto>>
     @GET("user/{username}")
     fun getUserProfile(@Path("username") username: String ) : Call<User>
     @GET("user/byId/{id}")
