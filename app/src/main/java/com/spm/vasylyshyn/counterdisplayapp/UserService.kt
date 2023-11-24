@@ -1,5 +1,6 @@
 package com.spm.vasylyshyn.counterdisplayapp
 
+import com.spm.vasylyshyn.counterdisplayapp.response.RegisterDeviceRequest
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -16,6 +17,8 @@ interface UserService {
     fun getAllUsers(): Call<List<User>>
     @GET("user/getDevicesForCurrentUser")
         fun getDevicesForCurrentUser(@HeaderMap headers: Map<String, String>): Call<List<DeviceDto>>
+    @POST("user/addDeviceToUser")
+    fun addDeviceToUser(@HeaderMap headers: Map<String, String>,@Body registerDeviceRequest: RegisterDeviceRequest): Call<ApiResponse>
     @GET("user/{username}")
     fun getUserProfile(@Path("username") username: String ) : Call<User>
     @GET("user/byId/{id}")

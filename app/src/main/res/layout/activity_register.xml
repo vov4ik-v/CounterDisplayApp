@@ -13,12 +13,12 @@
         android:layout_width="220dp"
         android:layout_height="117dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
-        android:background="#2D3E67"
+        android:background="#1D2A4A"
         android:src="@drawable/logo_spm"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

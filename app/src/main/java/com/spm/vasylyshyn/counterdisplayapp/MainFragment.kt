@@ -1,6 +1,7 @@
 package com.spm.vasylyshyn.counterdisplayapp
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -43,19 +44,21 @@ class MainFragment() : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_main, container, false)
         val addDeviceButton: Button = view.findViewById(R.id.addDeviceButton)
-        uploadDevice { devices ->
-            val arrayAdapter = CardScrollAdapter(activity, devices as ArrayList<Device>)
-            val horizontalListView = view.findViewById<HListView>(R.id.scroll_device)
-            horizontalListView.adapter = arrayAdapter
-            addDeviceButton.setOnClickListener {
-                val alertDialog = AlertDialog.Builder(/* context = */ context).create()
-                alertDialog.setTitle("Увага")
-                alertDialog.setMessage("Дана функція не доступна на демо версії додатку.")
-                alertDialog.setButton(
-                    AlertDialog.BUTTON_NEUTRAL, "OK"
-                ) { dialog, _ -> dialog.dismiss() }
-                alertDialog.show()
+        if (!LoginActivity.token.isNullOrEmpty()) {
+            uploadDevice { devices ->
+                if (devices.isNotEmpty()) {
+
+
+                    val arrayAdapter = CardScrollAdapter(activity, devices as ArrayList<Device>)
+                    val horizontalListView = view.findViewById<HListView>(R.id.scroll_device)
+                    horizontalListView.adapter = arrayAdapter
+
+                }
             }
+        }
+        addDeviceButton.setOnClickListener {
+            val intent = Intent(context, RegisterDeviceActivity::class.java)
+            startActivity(intent)
         }
         return view
     }
@@ -99,7 +102,7 @@ class MainFragment() : Fragment() {
             val gson = GsonBuilder()
                 .create()
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://10.10.10.8:8080/api/")
+                .baseUrl("http://192.168.31.86:8080/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
             val apiService = retrofit.create(UserService::class.java)

@@ -35,9 +35,10 @@ class LoginActivity : AppCompatActivity() {
                 alertDialog.show()
             } else {
                 val retrofit = Retrofit.Builder()
-                    .baseUrl("http://10.10.10.8:8080/api/")
+                    .baseUrl("http://192.168.31.86:8080/api/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
+//                val loginRequest:LoginRequest = LoginRequest("vasiliwin@gmail.com", "vova")
                 val loginRequest:LoginRequest = LoginRequest(login.text.toString(), password.text.toString())
                 val apiService = retrofit.create(AuthService::class.java)
 

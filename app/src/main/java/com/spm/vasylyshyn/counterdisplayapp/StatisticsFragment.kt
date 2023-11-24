@@ -10,7 +10,10 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import it.sephiroth.android.library.widget.HListView
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Date
+import java.util.Locale
 import java.util.concurrent.ExecutionException
 
 private const val ARG_PARAM1 = "param1"
@@ -20,7 +23,7 @@ class StatisticsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    var arrayDevice = ArrayList<Device>();
+    private var arrayDevice = ArrayList<Device>();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +46,7 @@ class StatisticsFragment : Fragment() {
         val arrayAdress = arrayOf("Стрийська 81/17", "Стрийська 115", "Гашека 13")
         val adapterSpinner = ArrayAdapter(requireActivity(), R.layout.spinner_item, arrayAdress)
         chooseAdress.adapter = adapterSpinner
+//        print(chooseAdress.text)
         if ((activity as MainActivity?)!!.isOnline(requireContext())) {
             getData()
         }
@@ -55,7 +59,15 @@ class StatisticsFragment : Fragment() {
 
     fun getData() {
         try {
-            val map: MutableMap<Date, Int> = HashMap()
+//            val map: MutableMap<Date, Int> = HashMap()
+//            MainFragment.uploadDevice { devices ->
+//                if (devices.isNotEmpty()) {
+//
+//                    for (device in devices){
+//                        arrayDevice.add(device)
+//                    }
+//                }
+//            }
 //            val jsonObject: JsonObject =
 //                GetJson().AsJSONObject("http://imet.pythonanywhere.com/get_data?email=alex@gmail.com&type=gas&counter=3663434534&week=week")
 //            val set: Set<Map.Entry<String, com.google.gson.JsonElement>> = jsonObject.entrySet()
@@ -68,19 +80,27 @@ class StatisticsFragment : Fragment() {
 //            map["2"] = 223
 //            map["3"] = 323
 //            map["4"] = 423
-            val device = Device(TypeDevice.GAS, "Striska 12", 56)
+                    val device = Device(TypeDevice.GAS, "Striska 12", 56)
+            val formatter =
+                DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm", Locale.ENGLISH)
+            val counts:List<DisplayCount> = listOf(
+                DisplayCount(1,123, LocalDateTime.parse("12.11.2023, 21:28",formatter)),
+                DisplayCount(2,167, LocalDateTime.parse("13.11.2023, 21:28",formatter)),
+                DisplayCount(3,189, LocalDateTime.parse("14.11.2023, 21:28",formatter))
+            )
+            device.listDisplayCounts = counts
 //            device.listDisplayCounts = map // edit
-            arrayDevice.add(device)
-        } catch (e: ExecutionException) {
-            e.printStackTrace()
-        } catch (e: InterruptedException) {
-            e.printStackTrace()
-        } catch (e: IllegalStateException) {
-            Toast.makeText(activity, "no internet", Toast.LENGTH_SHORT).show()
-            val intent = Intent(activity, MainActivity::class.java)
-            startActivity(intent)
-        }
-    }
+                    arrayDevice.add(device)
+                } catch (e: ExecutionException) {
+                e.printStackTrace()
+            } catch (e: InterruptedException) {
+                e.printStackTrace()
+            } catch (e: IllegalStateException) {
+                Toast.makeText(activity, "no internet", Toast.LENGTH_SHORT).show()
+                val intent = Intent(activity, MainActivity::class.java)
+                startActivity(intent)
+            }
+            }
 
     
 }
