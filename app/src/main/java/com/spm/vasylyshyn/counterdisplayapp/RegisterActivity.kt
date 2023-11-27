@@ -37,8 +37,9 @@ class RegisterActivity : AppCompatActivity() {
                 ) { dialog, whichw -> dialog.dismiss() }
                 alertDialog.show()
             } else {
+                val ip = IP.ip
                 val retrofit = Retrofit.Builder()
-                    .baseUrl("http://10.10.10.8:8080/api/")
+                    .baseUrl("http://${ip}:8080/api/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 val registerRequest:RegisterRequest = RegisterRequest(email.text.toString(),firstname.text.toString(),lastname.text.toString(),username.text.toString(), password.text.toString(),confirmPassword.text.toString())

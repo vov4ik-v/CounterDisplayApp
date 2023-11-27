@@ -81,8 +81,9 @@ class SettingsDeviceActivity : AppCompatActivity() {
                         editPrice.text.toString().toInt(),
                         editPeriod.text.toString().toInt()
                     )
+                    val ip = IP.ip
                     val retrofit = Retrofit.Builder()
-                        .baseUrl("http://192.168.31.86:8080/api/")
+                        .baseUrl("http://${ip}:8080/api/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build()
                     val deviceService = retrofit.create(DeviceService::class.java)

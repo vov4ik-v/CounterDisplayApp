@@ -1,6 +1,5 @@
 package com.spm.vasylyshyn.counterdisplayapp
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -98,11 +97,11 @@ class MainFragment() : Fragment() {
         }
 
         fun uploadDevice(callback: (List<Device>) -> Unit) {
-            Log.d("in upload device", "I`m here")
             val gson = GsonBuilder()
                 .create()
+            val ip = IP.ip
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://192.168.31.86:8080/api/")
+                .baseUrl("http://${ip}:8080/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
             val apiService = retrofit.create(UserService::class.java)

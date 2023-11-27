@@ -34,8 +34,9 @@ class LoginActivity : AppCompatActivity() {
                 ) { dialog, whichw -> dialog.dismiss() }
                 alertDialog.show()
             } else {
+                val ip = IP.ip
                 val retrofit = Retrofit.Builder()
-                    .baseUrl("http://192.168.31.86:8080/api/")
+                    .baseUrl("http://${ip}:8080/api/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
 //                val loginRequest:LoginRequest = LoginRequest("vasiliwin@gmail.com", "vova")

@@ -4,7 +4,7 @@ import java.text.DateFormat
 
 data class User(
     val id:Int,
-    val displayCount:Int,
-    val numberOfDevice:Int,
-    val createdData: DateFormat
+    val email:String,
+    val username:String,
+    val phoneNumber:String
 )

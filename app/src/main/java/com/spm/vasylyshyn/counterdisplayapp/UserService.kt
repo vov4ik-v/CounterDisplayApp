@@ -1,6 +1,7 @@
 package com.spm.vasylyshyn.counterdisplayapp
 
 import com.spm.vasylyshyn.counterdisplayapp.response.RegisterDeviceRequest
+import com.spm.vasylyshyn.counterdisplayapp.response.UpdateUserRequest
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -11,8 +12,7 @@ import retrofit2.http.Path
 
 interface UserService {
     @GET("user/")
-    @Headers("Authorization:BEARER eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpZXMiOlt7ImF1dGhvcml0eSI6IlVTRVIifV0sImlkIjoiMTIiLCJpYXQiOjE2OTk1Nzg5NDQsInVzZXJuYW1lIjoidmFzaWxpd2luQGdtYWlsLmNvbSJ9.IJFtXk0Z91DEQPsR_ieJRhntLxbgCHmFfvy68EOHk_XxEMIibehQcmnHHF2bL4YjMDaq94bU-Ks4dm5bAW7InQ")
-    fun getCurrentUser(): Call<User>
+    fun getCurrentUser(@HeaderMap headers: Map<String, String>): Call<User>
     @GET("user/allUser")
     fun getAllUsers(): Call<List<User>>
     @GET("user/getDevicesForCurrentUser")
@@ -25,6 +25,6 @@ interface UserService {
     fun getUserById(@Path("id") id: Long ) : Call<User>
     @POST("user/update")
 //    header
-    fun updateUser(@Body user: User) : Call<Any>
+    fun updateUser(@HeaderMap headers: Map<String, String>,@Body updateUserRequest: UpdateUserRequest) : Call<User>
 
 }
