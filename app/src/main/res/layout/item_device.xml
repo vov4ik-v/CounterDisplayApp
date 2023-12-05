@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="300dp"
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -76,25 +75,23 @@
             android:id="@+id/textView2"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="50dp"
             android:text="Останні дані:"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameDeviceInItem" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:maxWidth="200dp"
             android:text="20 кб. м."
             android:textAlignment="center"

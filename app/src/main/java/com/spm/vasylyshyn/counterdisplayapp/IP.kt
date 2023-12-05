@@ -2,6 +2,6 @@ package com.spm.vasylyshyn.counterdisplayapp
 
 class IP {
     companion object{
-       val ip= "10.10.10.7"
+       val ip= "192.168.37.68"
     }
 }
