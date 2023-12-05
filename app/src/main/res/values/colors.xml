@@ -7,4 +7,5 @@
     <color name="black">#000000</color>
     <color name="gasChart">#FFFB44</color>
     <color name="waterChart">#5FC4FF</color>
+    <color name="blue">#0077E8</color>
 </resources>

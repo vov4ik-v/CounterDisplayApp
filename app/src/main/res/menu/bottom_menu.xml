@@ -2,12 +2,12 @@
     <item
         android:id="@+id/bottom_navigation_main"
         android:enabled="true"
-        android:icon="@drawable/icons_home"
+        android:icon="@drawable/home"
         android:title="@string/title_main_fragment" />
     <item
         android:id="@+id/bottom_navigation_statistics"
         android:enabled="true"
-        android:icon="@drawable/icon_statistics"
+        android:icon="@drawable/statistic"
         android:title="@string/title_statistics" />
 
     <item

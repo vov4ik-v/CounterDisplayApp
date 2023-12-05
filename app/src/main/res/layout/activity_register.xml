@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    >
+    android:background="#0F0F0F"
+    tools:context=".LoginActivity">
 
 
     <ImageView
@@ -15,7 +15,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
-        android:background="#2D3E67"
         android:src="@drawable/logo_spm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -26,11 +25,11 @@
         android:id="@+id/cardView6"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@color/white"
         android:elevation="5dp"
         android:orientation="vertical"
@@ -43,6 +42,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#1B1B1B"
             android:orientation="vertical">
 
             <TextView
@@ -52,6 +52,7 @@
                 android:paddingTop="20dp"
                 android:paddingBottom="10dp"
                 android:text="Увійти"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -64,7 +65,9 @@
                 android:inputType="textEmailAddress"
                 android:maxHeight="45dp"
                 android:minHeight="48dp"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColorHint="@color/white"
+                app:backgroundTint="@color/white" />
 
             <EditText
                 android:id="@+id/usernameEditText"
@@ -75,7 +78,9 @@
                 android:inputType="textEmailAddress"
                 android:maxHeight="45dp"
                 android:minHeight="48dp"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColorHint="@color/white"
+                app:backgroundTint="@color/white" />
 
             <EditText
                 android:id="@+id/firstnameEditText"
@@ -86,7 +91,9 @@
                 android:inputType="textEmailAddress"
                 android:maxHeight="45dp"
                 android:minHeight="48dp"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColorHint="@color/white"
+                app:backgroundTint="@color/white" />
 
             <EditText
                 android:id="@+id/lastnameEditText"
@@ -97,7 +104,9 @@
                 android:inputType="textEmailAddress"
                 android:maxHeight="45dp"
                 android:minHeight="48dp"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColorHint="@color/white"
+                app:backgroundTint="@color/white" />
 
             <EditText
                 android:id="@+id/passwordEditText"
@@ -108,7 +117,9 @@
                 android:inputType="textPassword"
                 android:maxHeight="45dp"
                 android:minHeight="48dp"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColorHint="@color/white"
+                app:backgroundTint="@color/white" />
 
             <EditText
                 android:id="@+id/confirmPasswordEditText"
@@ -120,7 +131,9 @@
                 android:inputType="textPassword"
                 android:maxHeight="45dp"
                 android:minHeight="48dp"
-                android:paddingTop="10dp" />
+                android:paddingTop="10dp"
+                android:textColorHint="@color/white"
+                app:backgroundTint="@color/white" />
 
 
         </LinearLayout>
@@ -131,9 +144,9 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="410dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/button_sign_in"
+        android:background="@drawable/button_login"
         android:elevation="10dp"
         android:onClick="onClick"
         android:text="Зареєструватись"
