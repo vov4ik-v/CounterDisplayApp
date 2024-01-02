@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0F0F0F"
     tools:context=".SettingsDeviceActivity">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/settings_device"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +27,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        app:cardBackgroundColor="#1B1B1B"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,25 +44,28 @@
                 android:paddingTop="10dp"
                 android:text="@string/cantora_name"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/settingTypeDevice"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:paddingBottom="10dp"-->
-<!--                android:textAlignment="center"-->
-<!--                android:textSize="18sp" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/settingTypeDevice"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="10dp"-->
+            <!--                android:paddingBottom="10dp"-->
+            <!--                android:textAlignment="center"-->
+            <!--                android:textSize="18sp" />-->
             <EditText
                 android:id="@+id/cantora_nama"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:minHeight="48dp"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/white"
                 android:inputType="text"
+                android:minHeight="48dp"
                 android:paddingBottom="10dp"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -72,11 +75,10 @@
         android:id="@+id/cardView7"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="#1B1B1B"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:text="@string/text_address"
+                android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -102,6 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/white"
                 android:inputType="text"
                 android:minHeight="48dp"
                 android:paddingBottom="10dp"
@@ -114,6 +119,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#1B1B1B"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,6 +135,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:text="@string/text_period"
+                android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -146,6 +153,8 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
+                    android:backgroundTint="#FFFFFF"
+                    android:textColor="@color/white"
                     android:inputType="number"
                     android:minHeight="48dp"
                     android:textAlignment="center"
@@ -156,20 +165,21 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
+                    android:backgroundTint="#FFFFFF"
                     android:minHeight="48dp"
                     android:textAlignment="center" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView11"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="#1B1B1B"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -186,6 +196,7 @@
                 android:paddingTop="10dp"
                 android:text="@string/type_device"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -203,6 +214,7 @@
                     android:layout_width="276dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
+                    android:backgroundTint="#FFFFFF"
                     android:minHeight="48dp"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -214,8 +226,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="#1B1B1B"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -231,6 +244,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:text="@string/text_price"
+                android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -241,26 +255,24 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:minHeight="48dp"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/white"
                 android:inputType="number"
+                android:minHeight="48dp"
                 android:paddingBottom="10dp"
                 android:textSize="18sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 
-
     <Button
         android:id="@+id/save_button"
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/background_button_save"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button_login"
         android:text="@string/text_save"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -268,7 +280,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-                                                        />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,10 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".fragments.shopping.ProfileFragment"
-    android:background="#F4F4F4">
-
+    android:background="#000000"
+    android:fillViewport="true">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,12 +16,12 @@
             android:id="@+id/progressbar_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:indeterminateTint="@color/g_hint"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:indeterminateTint="@color/g_hint"
-            android:visibility="gone"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_parnet"
@@ -37,8 +35,10 @@
                 style="@style/BigTextViewThin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/g_settings"
+                android:textSize="25sp"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,7 +46,7 @@
                 android:id="@+id/constraint_profile"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@+id/tv_settings">
@@ -55,7 +55,6 @@
                     android:id="@+id/img_user"
                     android:layout_width="@dimen/_43sdp"
                     android:layout_height="@dimen/_43sdp"
-                    android:background="@drawable/profile_img_background"
                     android:src="@drawable/test_image"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -67,8 +66,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="3dp"
                     android:text="Name"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
                     app:layout_constraintStart_toEndOf="@id/img_user"
                     app:layout_constraintTop_toTopOf="@+id/img_user" />
 
@@ -79,6 +79,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/g_edit_personal_details"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/tv_user_name"
                     app:layout_constraintTop_toBottomOf="@id/tv_user_name" />
 
@@ -86,11 +88,12 @@
                     android:id="@+id/arrow"
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_15sdp"
+                    android:layout_marginRight="9dp"
                     android:src="@drawable/ic_arrow"
                     app:layout_constraintBottom_toBottomOf="@id/tv_edit_personal_details"
                     app:layout_constraintEnd_toEndOf="@id/constraint_profile"
                     app:layout_constraintTop_toTopOf="@id/tv_user_name"
-                    app:tint="@color/g_icon_tint" />
+                    app:tint="@color/white" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -102,7 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/g_datas"
-                android:textColor="@color/g_hint"
+                android:textSize="17sp"
+                android:textColor="@color/white"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/constraint_profile" />
@@ -113,8 +117,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/search_box_background"
                 android:orientation="vertical"
+                android:background="@drawable/background_menu"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/tv_orders">
@@ -123,15 +127,16 @@
                     android:id="@+id/devices"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_width="@dimen/_23sdp"
+                        android:layout_height="@dimen/_23sdp"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/settings_items_background"
-                        android:backgroundTint="@color/g_hint"
+                        android:layout_marginLeft="7dp"
+                        android:backgroundTint="@color/black"
                         android:src="@drawable/ic_search"
                         app:tint="@color/white" />
 
@@ -144,15 +149,17 @@
                         android:layout_marginStart="@dimen/_15sdp"
                         android:layout_weight="1"
                         android:text="@string/g_all_devices"
-                        android:textColor="@color/g_hint"
+                        android:textSize="15sp"
+                        android:textColor="@color/white"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="@dimen/_15sdp"
                         android:layout_height="@dimen/_15sdp"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginRight="9dp"
                         android:src="@drawable/ic_arrow"
-                        app:tint="@color/g_icon_tint" />
+                        app:tint="@color/white" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -163,9 +170,10 @@
                 style="@style/MediumTextViewThin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/g_notifications"
-                android:textColor="@color/g_hint"
+                android:textSize="17sp"
+                android:textColor="@color/white"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/linear_devices" />
@@ -175,7 +183,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/search_box_background"
+                android:background="@drawable/background_menu"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -184,14 +192,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_width="@dimen/_23sdp"
+                        android:layout_height="@dimen/_23sdp"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/settings_items_background"
-                        android:backgroundTint="#4cd964"
+                        android:layout_marginLeft="7dp"
                         android:src="@drawable/ic_notification"
                         app:tint="@color/white" />
 
@@ -204,7 +213,8 @@
                         android:layout_marginStart="@dimen/_15sdp"
                         android:layout_weight="1"
                         android:text="@string/g_notifications"
-                        android:textColor="@color/g_hint"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.SwitchCompat
@@ -212,7 +222,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:buttonTint="#4cd964"
+                        android:layout_marginRight="5dp"
+                        app:thumbTint="#0077E8"
+                        app:trackTint="#54A1EB"
                         android:checked="true" />
 
                 </LinearLayout>
@@ -226,7 +238,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/g_regional"
-                android:textColor="@color/g_hint"
+                android:textSize="17sp"
+                android:textColor="@color/white"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/linear_notifications" />
@@ -236,7 +249,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/search_box_background"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -246,14 +258,16 @@
                     android:id="@+id/linear_language"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:background="@drawable/background_menu"
+                    android:orientation="horizontal"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp">
 
                     <ImageView
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_width="@dimen/_23sdp"
+                        android:layout_height="@dimen/_23sdp"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/settings_items_background"
-                        android:backgroundTint="#5856d6"
+                        android:layout_marginLeft="7dp"
                         android:src="@drawable/ic_language"
                         app:tint="@color/white" />
 
@@ -266,15 +280,17 @@
                         android:layout_marginStart="@dimen/_15sdp"
                         android:layout_weight="1"
                         android:text="@string/g_language"
-                        android:textColor="@color/g_hint"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="@dimen/_15sdp"
                         android:layout_height="@dimen/_15sdp"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginRight="9dp"
                         android:src="@drawable/ic_arrow"
-                        app:tint="@color/g_icon_tint" />
+                        app:tint="@color/white" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -282,14 +298,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:background="@drawable/background_menu"
+                    android:orientation="horizontal"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_width="@dimen/_23sdp"
+                        android:layout_height="@dimen/_23sdp"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/settings_items_background"
-                        android:backgroundTint="#9C27B0"
+                        android:layout_marginLeft="7dp"
                         android:src="@drawable/ic_help"
                         app:tint="@color/white" />
 
@@ -302,15 +320,17 @@
                         android:layout_marginStart="@dimen/_15sdp"
                         android:layout_weight="1"
                         android:text="@string/help"
-                        android:textColor="@color/g_hint"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="@dimen/_15sdp"
                         android:layout_height="@dimen/_15sdp"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginRight="9dp"
                         android:src="@drawable/ic_arrow"
-                        app:tint="@color/g_icon_tint" />
+                        app:tint="@color/white" />
                 </LinearLayout>
 
 
@@ -319,14 +339,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:background="@drawable/background_menu"
+                    android:orientation="horizontal"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp">
 
                     <ImageView
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_width="@dimen/_23sdp"
+                        android:layout_height="@dimen/_23sdp"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/settings_items_background"
-                        android:backgroundTint="#ff5823"
+                        android:layout_marginLeft="7dp"
                         android:src="@drawable/ic_logout"
                         app:tint="@color/white" />
 
@@ -339,34 +361,21 @@
                         android:layout_marginStart="@dimen/_15sdp"
                         android:layout_weight="1"
                         android:text="@string/g_logout"
-                        android:textColor="@color/g_hint"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="@dimen/_15sdp"
                         android:layout_height="@dimen/_15sdp"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginRight="9dp"
                         android:src="@drawable/ic_arrow"
-                        app:tint="@color/g_icon_tint" />
+                        app:tint="@color/white" />
                 </LinearLayout>
 
 
             </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/tv_version_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/sf_pro_display"
-                android:text="Version 1.0"
-                android:textColor="@color/g_hint"
-                android:textSize="@dimen/_10sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/guideline2"
-                app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@+id/linear_regional" />
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -374,14 +383,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.04" />
+                app:layout_constraintGuide_percent="0.08" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.96" />
+                app:layout_constraintGuide_percent="0.92" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

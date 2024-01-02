@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="700dp"
-
+    android:background="@color/black"
     tools:context=".AdviceFragment">
     <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fillViewport="true">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +36,7 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp"
                         android:text="@string/titile_economy"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="25sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +60,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="120dp"
                             android:text="Економія води"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:translationZ="2dp" />

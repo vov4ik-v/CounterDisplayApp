@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0F0F0F"
     tools:context=".SettingsDeviceActivity">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/register_device"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +26,8 @@
         android:id="@+id/cardView5"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
+        app:cardBackgroundColor="#1B1B1B"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +44,7 @@
                 android:paddingTop="10dp"
                 android:text="@string/serial_number_device"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -53,9 +54,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:backgroundTint="#FFFFFF"
                 android:inputType="number"
                 android:minHeight="48dp"
                 android:paddingBottom="10dp"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -64,11 +67,10 @@
         android:id="@+id/cardView7"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="#1B1B1B"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:text="@string/password_device"
+                android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -94,9 +97,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:minHeight="48dp"
+                android:backgroundTint="#FFFFFF"
                 android:inputType="textPassword"
+                android:minHeight="48dp"
                 android:paddingBottom="10dp"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -106,10 +111,12 @@
         android:layout_width="303dp"
         android:layout_height="101dp"
         android:layout_marginTop="20dp"
+        app:cardBackgroundColor="#1B1B1B"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView7">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,6 +128,7 @@
                 android:paddingTop="10dp"
                 android:text="@string/text_address"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -130,8 +138,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:backgroundTint="#FFFFFF"
                 android:minHeight="48dp"
                 android:paddingBottom="10dp"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -140,8 +150,9 @@
         android:id="@+id/cardView8"
         android:layout_width="303dp"
         android:layout_height="101dp"
-        app:cardCornerRadius="10dp"
         android:layout_marginTop="20dp"
+        app:cardBackgroundColor="#1B1B1B"
+        app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView10">
@@ -156,6 +167,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:text="@string/type_device"
+                android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -174,6 +186,7 @@
                     android:layout_width="276dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
+                    android:backgroundTint="#FFFFFF"
                     android:minHeight="48dp"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -182,12 +195,12 @@
 
     <Button
         android:id="@+id/button_register_device"
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="28dp"
-        android:background="@drawable/background_button_save"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/button_login"
         android:text="@string/text_register"
         android:textAlignment="center"
         android:textColor="@color/white"
