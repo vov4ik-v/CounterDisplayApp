@@ -9,7 +9,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.spm.vasylyshyn.counterdisplayapp.response.JWTTokenSuccessResponse
 import com.spm.vasylyshyn.counterdisplayapp.R
-import com.spm.vasylyshyn.counterdisplayapp.URL_PATH
+import com.spm.vasylyshyn.counterdisplayapp.API_URL_PATH
 import com.spm.vasylyshyn.counterdisplayapp.response.LoginRequest
 import com.spm.vasylyshyn.counterdisplayapp.service.AuthService
 import retrofit2.Call
@@ -37,10 +37,9 @@ class LoginActivity : AppCompatActivity() {
                 alertDialog.show()
             } else {
                 val retrofit = Retrofit.Builder()
-                    .baseUrl(URL_PATH)
+                    .baseUrl(API_URL_PATH)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
-//                val loginRequest:LoginRequest = LoginRequest("vasiliwin@gmail.com", "vova")
                 val loginRequest:LoginRequest = LoginRequest(login.text.toString(), password.text.toString())
                 val apiService = retrofit.create(AuthService::class.java)
 

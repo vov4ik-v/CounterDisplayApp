@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.gson.GsonBuilder
 import com.spm.vasylyshyn.counterdisplayapp.R
-import com.spm.vasylyshyn.counterdisplayapp.URL_PATH
+import com.spm.vasylyshyn.counterdisplayapp.API_URL_PATH
 import com.spm.vasylyshyn.counterdisplayapp.databinding.ActivityMainBinding
 import com.spm.vasylyshyn.counterdisplayapp.enity.User
 import com.spm.vasylyshyn.counterdisplayapp.fragment.AdviceFragment
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 val gson = GsonBuilder()
                     .create()
                 val retrofit = Retrofit.Builder()
-                    .baseUrl(URL_PATH)
+                    .baseUrl(API_URL_PATH)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build()
                 val apiService = retrofit.create(UserService::class.java)
@@ -91,7 +91,6 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(applicationContext, LoginActivity::class.java)
                 startActivity(intent)
             }
-            // place your clicking handle code here.
         })
 
 

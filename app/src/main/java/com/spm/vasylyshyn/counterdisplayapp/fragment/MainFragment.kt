@@ -17,7 +17,7 @@ import com.spm.vasylyshyn.counterdisplayapp.activity.LoginActivity
 import com.spm.vasylyshyn.counterdisplayapp.R
 import com.spm.vasylyshyn.counterdisplayapp.activity.RegisterDeviceActivity
 import com.spm.vasylyshyn.counterdisplayapp.enums.TypeDevice
-import com.spm.vasylyshyn.counterdisplayapp.URL_PATH
+import com.spm.vasylyshyn.counterdisplayapp.API_URL_PATH
 import com.spm.vasylyshyn.counterdisplayapp.service.UserService
 import it.sephiroth.android.library.widget.HListView
 import okhttp3.OkHttpClient
@@ -50,15 +50,12 @@ class MainFragment() : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_main, container, false)
         val addDeviceButton: Button = view.findViewById(R.id.addDeviceButton)
         if (!LoginActivity.token.isNullOrEmpty()) {
             uploadDevice { devices ->
                 if (devices.isNotEmpty()) {
-
-
-                    val arrayAdapter = CardScrollAdapter(activity, devices as ArrayList<Device>)
+                    val arrayAdapter = activity?.let { CardScrollAdapter(it, devices as ArrayList<Device>) }
                     val horizontalListView = view.findViewById<HListView>(R.id.scroll_device)
                     horizontalListView.adapter = arrayAdapter
 
@@ -110,7 +107,7 @@ class MainFragment() : Fragment() {
             val gson = GsonBuilder()
                 .create()
             val retrofit = Retrofit.Builder()
-                .baseUrl(URL_PATH)
+                .baseUrl(API_URL_PATH)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
             val apiService = retrofit.create(UserService::class.java)
@@ -123,7 +120,7 @@ class MainFragment() : Fragment() {
                     ) {
                         if (response.isSuccessful) {
                             val arrayDevice: ArrayList<Device> = ArrayList()
-                            for (el in response.body()!!) {
+                            for (el in response.body().orEmpty()) {
                                 val formatter =
                                     DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm", Locale.ENGLISH)
                                 val date = LocalDateTime.parse(el.createdDate, formatter)
@@ -160,7 +157,7 @@ class MainFragment() : Fragment() {
                                         price = el.price,
                                         frequency = el.frequency,
                                         serialNumber = el.numberOfDevice,
-                                        mapDisplayCounts = displayCounts,
+                                        listDisplayCounts = displayCounts,
                                         createdData = date
                                     )
                                 )

@@ -21,8 +21,8 @@ import com.spm.vasylyshyn.counterdisplayapp.fragment.MainFragment.Companion.uplo
 import java.lang.String
 import kotlin.Int
 
-class CardScrollAdapter internal constructor(context: Activity?, devices: List<Device>) :
-    ArrayAdapter<Device?>(context!!, 0, devices as List<Device?>) {
+class CardScrollAdapter internal constructor(context: Activity, devices: List<Device>) :
+    ArrayAdapter<Device?>(context, 0, devices as List<Device?>) {
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -37,15 +37,13 @@ class CardScrollAdapter internal constructor(context: Activity?, devices: List<D
         val typeDeviceImage = listItemView.findViewById<ImageView>(R.id.typeDeviceImage)
         serialNumber.visibility = View.INVISIBLE
         if (currentDevice != null) {
-            if (currentDevice.typeDevice === TypeDevice.GAS) {
-                typeDeviceImage.setImageResource(R.drawable.gas_type)
+            val typeDeviceImageResource = when (currentDevice.typeDevice) {
+                TypeDevice.GAS -> R.drawable.gas_type
+                TypeDevice.WATER -> R.drawable.water_type
+                TypeDevice.LIGHT -> R.drawable.light_type
+                null -> null
             }
-            if(currentDevice.typeDevice == TypeDevice.LIGHT){
-                typeDeviceImage.setImageResource(R.drawable.light_type)
-            }
-            if (currentDevice.typeDevice == TypeDevice.WATER) {
-                typeDeviceImage.setImageResource(R.drawable.water_type)
-            }
+            typeDeviceImageResource?.also { typeDeviceImage.setImageResource(it) }
             typeDeviceImage.maxHeight = 75
             typeDeviceImage.maxWidth = 75
             serialNumber.text = String.valueOf(currentDevice.serialNumber)

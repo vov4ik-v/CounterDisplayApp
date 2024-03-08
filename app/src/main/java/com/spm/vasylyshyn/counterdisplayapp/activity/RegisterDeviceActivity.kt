@@ -11,7 +11,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import com.spm.vasylyshyn.counterdisplayapp.R
-import com.spm.vasylyshyn.counterdisplayapp.URL_PATH
+import com.spm.vasylyshyn.counterdisplayapp.API_URL_PATH
 import com.spm.vasylyshyn.counterdisplayapp.enums.TypeDevice
 import com.spm.vasylyshyn.counterdisplayapp.response.ApiResponse
 import com.spm.vasylyshyn.counterdisplayapp.response.RegisterDeviceRequest
@@ -64,7 +64,7 @@ class RegisterDeviceActivity : AppCompatActivity() {
                 }
                 val registerDeviceRequest:RegisterDeviceRequest = RegisterDeviceRequest(serialNumberDevice.text.toString().toLong(),typeForDevice,addressDevice.text.toString(), password.text.toString())
                 val retrofit = Retrofit.Builder()
-                    .baseUrl(URL_PATH)
+                    .baseUrl(API_URL_PATH)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 val userService = retrofit.create(UserService::class.java)

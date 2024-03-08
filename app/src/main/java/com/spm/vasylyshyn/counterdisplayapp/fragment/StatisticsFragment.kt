@@ -43,7 +43,6 @@ class StatisticsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_statistics, container, false)
         horizontalLIstOfLastData = view.findViewById<View>(R.id.lastDataOfDevice) as HListView
         val chooseAdress = view.findViewById<Spinner>(R.id.chooseAdress)
@@ -51,12 +50,11 @@ class StatisticsFragment : Fragment() {
         val arrayAdress = arrayOf("Стрийська 81/17", "Стрийська 115", "Гашека 13")
         val adapterSpinner = ArrayAdapter(requireActivity(), R.layout.spinner_item, arrayAdress)
         chooseAdress.adapter = adapterSpinner
-//        print(chooseAdress.text)
-        if ((activity as MainActivity?)!!.isOnline(requireContext())) {
+        if ((activity as MainActivity?)?.isOnline(requireContext()) == true) {
             getData()
         }
         val arrayAdapter: ArrayAdapter<*> = LastDataOfDeviceAdapter(requireActivity(), arrayDevice)
-        horizontalLIstOfLastData!!.adapter = arrayAdapter
+        horizontalLIstOfLastData?.adapter = arrayAdapter
         return view
     }
     private var horizontalLIstOfLastData: HListView? = null
@@ -64,28 +62,7 @@ class StatisticsFragment : Fragment() {
 
     fun getData() {
         try {
-//            val map: MutableMap<Date, Int> = HashMap()
-//            MainFragment.uploadDevice { devices ->
-//                if (devices.isNotEmpty()) {
-//
-//                    for (device in devices){
-//                        arrayDevice.add(device)
-//                    }
-//                }
-//            }
-//            val jsonObject: JsonObject =
-//                GetJson().AsJSONObject("http://imet.pythonanywhere.com/get_data?email=alex@gmail.com&type=gas&counter=3663434534&week=week")
-//            val set: Set<Map.Entry<String, com.google.gson.JsonElement>> = jsonObject.entrySet()
-//            for (i in set) {
-//                Log.d("ok", i.toString())
-//                Log.d("ok", i.value.toString().substring(1, i.value.toString().length - 1))
-//                map[i.key] = i.value.toString().substring(1, i.value.toString().length - 1).toInt()
-//            }
-//            map["12.10.2002"] = 123
-//            map["2"] = 223
-//            map["3"] = 323
-//            map["4"] = 423
-                    val device = Device(TypeDevice.GAS, "Striska 12", 56)
+            val device = Device(TypeDevice.GAS, "OBL","Striska 12", 56)
             val formatter =
                 DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm", Locale.ENGLISH)
             val counts:List<DisplayCount> = listOf(
@@ -94,8 +71,6 @@ class StatisticsFragment : Fragment() {
                 DisplayCount(3,189, LocalDateTime.parse("14.11.2023, 21:28",formatter))
             )
             device.listDisplayCounts = counts
-//            device.listDisplayCounts = map // edit
-//                    arrayDevice.add(device) edit
                 } catch (e: ExecutionException) {
                 e.printStackTrace()
             } catch (e: InterruptedException) {

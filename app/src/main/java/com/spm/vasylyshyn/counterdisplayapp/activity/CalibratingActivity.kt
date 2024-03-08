@@ -25,7 +25,7 @@ class CalibratingActivity : AppCompatActivity(), OnTouchListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = applicationContext
-        dp = context!!.resources.displayMetrics.density
+        dp = context?.resources?.displayMetrics?.density ?: 0f
         val zoneCalibrating: CardView = findViewById(R.id.zoneCalibrating)
         setContentView(R.layout.activity_calibrating)
         val imageView: ImageView = findViewById(R.id.calibrateImage)

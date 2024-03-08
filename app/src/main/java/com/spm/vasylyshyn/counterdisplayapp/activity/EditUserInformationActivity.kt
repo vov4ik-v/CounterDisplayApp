@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.spm.vasylyshyn.counterdisplayapp.R
-import com.spm.vasylyshyn.counterdisplayapp.URL_PATH
+import com.spm.vasylyshyn.counterdisplayapp.API_URL_PATH
 import com.spm.vasylyshyn.counterdisplayapp.enity.User
 import com.spm.vasylyshyn.counterdisplayapp.response.UpdateUserRequest
 import com.spm.vasylyshyn.counterdisplayapp.service.UserService
@@ -35,7 +35,7 @@ class EditUserInformationActivity : AppCompatActivity() {
                 editUsername.text.toString(),editPhoneNumber.text.toString()
             )
             val retrofit = Retrofit.Builder()
-                .baseUrl(URL_PATH)
+                .baseUrl(API_URL_PATH)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
             val userService = retrofit.create(UserService::class.java)

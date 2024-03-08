@@ -11,13 +11,12 @@ class MyXAxisValueFormatter : IndexAxisValueFormatter() {
     private var mFormat: DecimalFormat? = null
     fun MyAxisValueFormatter() {
 
-        // format values to 1 decimal digit
         mFormat = DecimalFormat("dd.MM.yyyy, HH:mm")
     }
 
     override fun getFormattedValue(value: Float, axis: AxisBase): String {
         // "value" represents the position of the label on the axis (x or y)
-        return mFormat!!.format(value) + " $"
+        return mFormat?.format(value) + " $"
     }
 
     val decimalDigits: Int

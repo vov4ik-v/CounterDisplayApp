@@ -70,41 +70,5 @@ class ProfileActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, LoginActivity::class.java)
             startActivity(intent)
         })
-
-
-//        login_btn.setOnClickListener {
-//            if (login.text.isEmpty() || password.text.isEmpty()) {
-//                val alertDialog = AlertDialog.Builder(this@ProfileActivity).create()
-//                alertDialog.setTitle("Увага")
-//                alertDialog.setMessage("Введіть пошту і пароль.")
-//                alertDialog.setButton(
-//                    AlertDialog.BUTTON_NEUTRAL, "OK"
-//                ) { dialog, whichw -> dialog.dismiss() }
-//                alertDialog.show()
-//            } else {
-//                val retrofit = Retrofit.Builder()
-//                    .baseUrl("http://192.168.31.86:8080/api/")
-//                    .addConverterFactory(GsonConverterFactory.create())
-//                    .build()
-////                val loginRequest:LoginRequest = LoginRequest("vasiliwin@gmail.com", "vova")
-//                val loginRequest:LoginRequest = LoginRequest(login.text.toString(), password.text.toString())
-//                val apiService = retrofit.create(AuthService::class.java)
-//
-//                apiService.authenticateUser(loginRequest).enqueue(object : Callback<JWTTokenSuccessResponse> {
-//                    override fun onResponse(
-//                        call: Call<JWTTokenSuccessResponse>,
-//                        response: Response<JWTTokenSuccessResponse>
-//                    ) {
-//                        token = response.body()?.token.toString()
-//                        val intent = Intent(applicationContext, MainActivity::class.java)
-//                        startActivity(intent)
-//                    }
-//
-//                    override fun onFailure(call: Call<JWTTokenSuccessResponse>, t: Throwable) {
-//                        Log.d("Test response", t.message.toString())
-//                    }
-//                })
-//            }
-//        }
     }
 }

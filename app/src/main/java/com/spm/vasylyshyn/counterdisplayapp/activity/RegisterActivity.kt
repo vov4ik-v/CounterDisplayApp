@@ -9,7 +9,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.spm.vasylyshyn.counterdisplayapp.R
 import com.spm.vasylyshyn.counterdisplayapp.response.RegisterSuccessResponse
-import com.spm.vasylyshyn.counterdisplayapp.URL_PATH
+import com.spm.vasylyshyn.counterdisplayapp.API_URL_PATH
 import com.spm.vasylyshyn.counterdisplayapp.response.RegisterRequest
 import com.spm.vasylyshyn.counterdisplayapp.service.AuthService
 import retrofit2.Call
@@ -40,7 +40,7 @@ class RegisterActivity : AppCompatActivity() {
                 alertDialog.show()
             } else {
                 val retrofit = Retrofit.Builder()
-                    .baseUrl(URL_PATH)
+                    .baseUrl(API_URL_PATH)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 val registerRequest:RegisterRequest = RegisterRequest(email.text.toString(),firstname.text.toString(),lastname.text.toString(),username.text.toString(), password.text.toString(),confirmPassword.text.toString())

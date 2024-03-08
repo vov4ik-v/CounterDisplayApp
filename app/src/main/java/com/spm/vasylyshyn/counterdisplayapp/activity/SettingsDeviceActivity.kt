@@ -13,7 +13,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isEmpty
 import com.spm.vasylyshyn.counterdisplayapp.R
-import com.spm.vasylyshyn.counterdisplayapp.URL_PATH
+import com.spm.vasylyshyn.counterdisplayapp.API_URL_PATH
 import com.spm.vasylyshyn.counterdisplayapp.enity.Device
 import com.spm.vasylyshyn.counterdisplayapp.enums.TypeDevice
 import com.spm.vasylyshyn.counterdisplayapp.response.UpdateDeviceRequest
@@ -87,7 +87,7 @@ class SettingsDeviceActivity : AppCompatActivity() {
                         editPeriod.text.toString().toInt()
                     )
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(URL_PATH)
+                        .baseUrl(API_URL_PATH)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build()
                     val deviceService = retrofit.create(DeviceService::class.java)
