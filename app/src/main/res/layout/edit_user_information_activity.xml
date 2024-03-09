@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
-                    android:text="@string/g_edit_profile"
+                    android:text="Редагувати профіль"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_25sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -82,7 +82,7 @@
             android:layout_marginTop="@dimen/_30sdp"
             android:background="@drawable/background_menu"
             android:gravity="center"
-            android:hint="@string/g_username"
+            android:hint="Логін"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
@@ -99,7 +99,7 @@
             android:background="@drawable/background_menu"
             android:fontFamily="@font/poppins_light"
             android:gravity="center"
-            android:hint="@string/g_second_name"
+            android:hint="Прізвище"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
@@ -120,22 +120,22 @@
 
         <Button
             android:id="@+id/btn_save_profile"
-            android:layout_width="250dp"
+            android:layout_width="200dp"
             android:layout_height="@dimen/_50sdp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/button_login"
-            android:text="@string/g_save"
+            android:text="ЗБЕРЕГТИ"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_24sdp"
+            android:textSize="@dimen/_19sdp"
 
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@+id/tv_update_password"
-            app:layout_constraintVertical_bias="0.024" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <ProgressBar
             android:id="@+id/progressbar_edit_profile"

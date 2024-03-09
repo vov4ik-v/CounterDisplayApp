@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="tiramisu">
-        <activity android:name="com.spm.vasylyshyn.counterdisplayapp.LauncherActivity"
+        <activity android:name="com.spm.vasylyshyn.counterdisplayapp.activity.LauncherActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,36 +23,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.spm.vasylyshyn.counterdisplayapp.MainActivity"
+            android:name="com.spm.vasylyshyn.counterdisplayapp.activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.spm.vasylyshyn.counterdisplayapp.ProfileActivity"
+            android:name="com.spm.vasylyshyn.counterdisplayapp.activity.ProfileActivity"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.spm.vasylyshyn.counterdisplayapp.EditUserInformationActivity"
+            android:name="com.spm.vasylyshyn.counterdisplayapp.activity.EditUserInformationActivity"
             android:label="@string/title_activity_edit_user_information"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.spm.vasylyshyn.counterdisplayapp.RegisterDeviceActivity"
+            android:name="com.spm.vasylyshyn.counterdisplayapp.activity.RegisterDeviceActivity"
             android:label="@string/title_register_device_activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.spm.vasylyshyn.counterdisplayapp.LoginActivity"
+            android:name="com.spm.vasylyshyn.counterdisplayapp.activity.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.spm.vasylyshyn.counterdisplayapp.RegisterActivity"
+            android:name="com.spm.vasylyshyn.counterdisplayapp.activity.RegisterActivity"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.spm.vasylyshyn.counterdisplayapp.SettingsDeviceActivity"
+            android:name="com.spm.vasylyshyn.counterdisplayapp.activity.SettingsDeviceActivity"
             android:label="@string/title_activity_settings_device"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.spm.vasylyshyn.counterdisplayapp.CalibratingActivity"
+            android:name="com.spm.vasylyshyn.counterdisplayapp.activity.CalibratingActivity"
             android:label="@string/title_activity_calibrating"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
