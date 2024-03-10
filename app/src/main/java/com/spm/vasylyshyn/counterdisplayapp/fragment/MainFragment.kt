@@ -123,7 +123,7 @@ class MainFragment() : Fragment() {
                             for (el in response.body().orEmpty()) {
                                 val formatter =
                                     DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm", Locale.ENGLISH)
-                                val date = LocalDateTime.now() // important change to parse(el.createdDate, formatter) after
+                                val date = LocalDateTime.now() //TODO: important change to parse(el.createdDate, formatter) after
                                 val displayCounts: ArrayList<DisplayCount> = ArrayList()
                                 val typeForDevice: TypeDevice = when (el.counterType) {
                                     "GAS" -> {
