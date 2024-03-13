@@ -47,6 +47,8 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("it.sephiroth.android.library.horizontallistview:hlistview:1.2.2")
     implementation("androidx.core:core-ktx:+")
+    implementation("com.google.android.gms:play-services-base:18.3.0")
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
 
     testImplementation("junit:junit:4.13.2")
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
