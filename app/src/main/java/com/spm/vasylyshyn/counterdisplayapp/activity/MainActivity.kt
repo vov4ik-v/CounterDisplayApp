@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             if (LoginActivity.token.isNotEmpty()) {
                 val retrofit = Retrofit.Builder()
                     .baseUrl(API_URL_PATH)
-                    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+                    .addConverterFactory(Json { coerceInputValues = true }.asConverterFactory("application/json".toMediaType()))
                     .build()
                 val apiService = retrofit.create(UserService::class.java)
 
