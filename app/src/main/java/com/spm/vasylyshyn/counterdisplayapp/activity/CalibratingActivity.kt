@@ -1,6 +1,5 @@
 package com.spm.vasylyshyn.counterdisplayapp.activity
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -15,18 +14,14 @@ import androidx.cardview.widget.CardView
 import com.spm.vasylyshyn.counterdisplayapp.R
 
 class CalibratingActivity : AppCompatActivity(), OnTouchListener {
-    var relativeLayout: RelativeLayout? = null
-    var msg = "ok"
+    private var relativeLayout: RelativeLayout? = null
     var context: Context? = null
-    var dp = 0f
-    var layoutParams: RelativeLayout.LayoutParams? = null
+    private var dp = 0f
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = applicationContext
         dp = context?.resources?.displayMetrics?.density ?: 0f
-        val zoneCalibrating: CardView = findViewById(R.id.zoneCalibrating)
         setContentView(R.layout.activity_calibrating)
         val imageView: ImageView = findViewById(R.id.calibrateImage)
         val options = BitmapFactory.Options()
@@ -50,12 +45,12 @@ class CalibratingActivity : AppCompatActivity(), OnTouchListener {
     }
 
     override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
-        val zoneCalibrating :CardView = findViewById(R.id.zoneCalibrating)
+        val zoneCalibrating: CardView = findViewById(R.id.zoneCalibrating)
         val firstPoint: CardView = findViewById(R.id.firstPoint)
         val secondPoint: CardView = findViewById(R.id.secondPoint)
         val thirdPoint: CardView = findViewById(R.id.thirdPoint)
         val fourthPoint: CardView = findViewById(R.id.forthPoint)
-        Log.d("ok", motionEvent.orientation.toString())
+        Log.i("CounterDisplayApp.CalibratingActivity", "Calibration processing started. motionEvent.orientation is: ${motionEvent.orientation}")
         if (motionEvent.action == 2) {
             when (view.id) {
                 R.id.firstPoint -> {
@@ -143,7 +138,7 @@ class CalibratingActivity : AppCompatActivity(), OnTouchListener {
                 }
             }
         }
-        Log.d("params", motionEvent.action.toString())
+        Log.i("CounterDisplayApp.CalibratingActivity", "Calibration processing ended. motionEvent.action is: ${motionEvent.action}")
         return true
     }
 }

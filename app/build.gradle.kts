@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("plugin.serialization") version "1.9.22"
 }
 
 android {
@@ -63,9 +64,8 @@ dependencies {
 // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
 // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
 // https://mvnrepository.com/artifact/com.squareup.retrofit2/adapter-rxjava
     implementation("com.squareup.retrofit2:adapter-rxjava:2.9.0")
-
-
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 }

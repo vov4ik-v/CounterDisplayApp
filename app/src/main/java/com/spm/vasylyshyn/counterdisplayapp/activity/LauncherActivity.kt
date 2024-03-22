@@ -21,7 +21,7 @@ class LauncherActivity : AppCompatActivity() {
                 try {
                     super.run()
                     sleep(1000)
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                 } finally {
                     val i = Intent(
                         applicationContext,
