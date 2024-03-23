@@ -2,15 +2,19 @@ package com.spm.vasylyshyn.counterdisplayapp.activity
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.spm.vasylyshyn.counterdisplayapp.R
+import org.koin.android.ext.android.inject
 
 
 class ProfileActivity : AppCompatActivity() {
+    private val sharedPreferences: SharedPreferences by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_activity)
@@ -41,6 +45,9 @@ class ProfileActivity : AppCompatActivity() {
         language.setOnClickListener { showFeatureIsNotAvailableAlert() }
         help.setOnClickListener { showFeatureIsNotAvailableAlert() }
         logout.setOnClickListener {
+            val editor = sharedPreferences.edit()
+            editor.remove("token")
+            editor.apply()
             LoginActivity.token = ""
             val intent = Intent(applicationContext, LoginActivity::class.java)
             startActivity(intent)

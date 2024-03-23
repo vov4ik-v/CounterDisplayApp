@@ -9,25 +9,22 @@ import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.*
 import com.spm.vasylyshyn.counterdisplayapp.R
-import com.spm.vasylyshyn.counterdisplayapp.API_URL_PATH
 import com.spm.vasylyshyn.counterdisplayapp.databinding.ActivityMainBinding
 import com.spm.vasylyshyn.counterdisplayapp.enity.User
 import com.spm.vasylyshyn.counterdisplayapp.fragment.AdviceFragment
 import com.spm.vasylyshyn.counterdisplayapp.fragment.MainFragment
 import com.spm.vasylyshyn.counterdisplayapp.fragment.StatisticsFragment
 import com.spm.vasylyshyn.counterdisplayapp.service.UserService
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
+import org.koin.android.ext.android.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
+    private val apiService: UserService by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -51,11 +48,6 @@ class MainActivity : AppCompatActivity() {
 
         profileIcon.setOnClickListener {
             if (LoginActivity.token.isNotEmpty()) {
-                val retrofit = Retrofit.Builder()
-                    .baseUrl(API_URL_PATH)
-                    .addConverterFactory(Json { coerceInputValues = true }.asConverterFactory("application/json".toMediaType()))
-                    .build()
-                val apiService = retrofit.create(UserService::class.java)
 
                 apiService.getCurrentUser(getHeaderMap())
                     .enqueue(object : Callback<User> {

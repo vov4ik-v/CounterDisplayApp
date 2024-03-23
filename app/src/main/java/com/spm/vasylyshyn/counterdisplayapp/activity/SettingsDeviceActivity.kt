@@ -11,21 +11,19 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isEmpty
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.spm.vasylyshyn.counterdisplayapp.R
-import com.spm.vasylyshyn.counterdisplayapp.API_URL_PATH
 import com.spm.vasylyshyn.counterdisplayapp.dto.DeviceDto
 import com.spm.vasylyshyn.counterdisplayapp.enums.TypeDevice
 import com.spm.vasylyshyn.counterdisplayapp.response.UpdateDeviceRequest
 import com.spm.vasylyshyn.counterdisplayapp.service.DeviceService
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
+import org.koin.android.ext.android.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class SettingsDeviceActivity : AppCompatActivity() {
+    private val deviceService: DeviceService by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings_device)
@@ -83,11 +81,6 @@ class SettingsDeviceActivity : AppCompatActivity() {
                         price = editPrice.text.toString().toInt(),
                         frequency = editPeriod.text.toString().toInt()
                     )
-                    val retrofit = Retrofit.Builder()
-                        .baseUrl(API_URL_PATH)
-                        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-                        .build()
-                    val deviceService = retrofit.create(DeviceService::class.java)
                     deviceService.updateDevice(getHeaderMap(), serialNumberDevice, updateDeviceRequest)
                         .enqueue(object :
                             Callback<DeviceDto> {
