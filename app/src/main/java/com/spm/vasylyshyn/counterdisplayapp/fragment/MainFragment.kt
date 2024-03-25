@@ -30,41 +30,28 @@ import retrofit2.Retrofit
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class MainFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
         val addDeviceButton: Button = view.findViewById(R.id.addDeviceButton)
+
         if (LoginActivity.token.isNotEmpty()) {
             uploadDevice { devices ->
                 if (devices.isNotEmpty()) {
                     val arrayAdapter = activity?.let { CardScrollAdapter(it, devices as ArrayList<Device>, this) }
                     val horizontalListView = view.findViewById<HListView>(R.id.scroll_device)
                     horizontalListView.adapter = arrayAdapter
-
                 }
             }
         }
+
         addDeviceButton.setOnClickListener {
             val intent = Intent(context, RegisterDeviceActivity::class.java)
             startActivity(intent)
         }
+
         return view
     }
 
@@ -88,7 +75,10 @@ class MainFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<DeviceDto>>, t: Throwable) {
-                Log.d("CounterDisplayApp.MainFragment", "getDevicesForCurrentUser failed with message ${t.message.toString()}")
+                Log.d(
+                    "CounterDisplayApp.MainFragment",
+                    "getDevicesForCurrentUser failed with message ${t.message.toString()}"
+                )
                 callback(emptyList())
             }
         })
@@ -116,7 +106,7 @@ class MainFragment : Fragment() {
         }
         val displayCounts: List<DisplayCount> = deviceDto.displayCounts.map(::parseDisplayCountFromDto).toList()
         val device = Device(
-            typeForDevice,
+            typeDevice = typeForDevice,
             cantoraName = deviceDto.cantoraName,
             address = deviceDto.address,
             price = deviceDto.price,
@@ -135,9 +125,9 @@ class MainFragment : Fragment() {
             Log.d("CounterDisplayApp.MainFragment", "Could not parse display count created date")
             LocalDateTime.now()
         }
-        val displayCountForDevice = DisplayCount(
-            displayCount.id, displayCount.displayCount, displayCountCreatedDate
-        )
+
+        val displayCountForDevice = DisplayCount(displayCount.id, displayCount.displayCount, displayCountCreatedDate)
+
         return displayCountForDevice
     }
 }

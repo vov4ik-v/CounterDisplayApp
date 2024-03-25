@@ -15,18 +15,22 @@ import retrofit2.http.Path
 interface UserService {
     @GET("user/")
     fun getCurrentUser(@HeaderMap headers: Map<String, String>): Call<User>
+
     @GET("user/allUser")
     fun getAllUsers(): Call<List<User>>
-    @GET("user/getDevicesForCurrentUser")
-        fun getDevicesForCurrentUser(@HeaderMap headers: Map<String, String>): Call<List<DeviceDto>>
-    @POST("user/addDeviceToUser")
-    fun addDeviceToUser(@HeaderMap headers: Map<String, String>,@Body registerDeviceRequest: RegisterDeviceRequest): Call<ApiResponse>
-    @GET("user/{username}")
-    fun getUserProfile(@Path("username") username: String ) : Call<User>
-    @GET("user/byId/{id}")
-    fun getUserById(@Path("id") id: Long ) : Call<User>
-    @POST("user/update")
-//    header
-    fun updateUser(@HeaderMap headers: Map<String, String>,@Body updateUserRequest: UpdateUserRequest) : Call<User>
 
+    @GET("user/getDevicesForCurrentUser")
+    fun getDevicesForCurrentUser(@HeaderMap headers: Map<String, String>): Call<List<DeviceDto>>
+
+    @POST("user/addDeviceToUser")
+    fun addDeviceToUser(@HeaderMap headers: Map<String, String>, @Body registerDeviceRequest: RegisterDeviceRequest): Call<ApiResponse>
+
+    @GET("user/{username}")
+    fun getUserProfile(@Path("username") username: String): Call<User>
+
+    @GET("user/byId/{id}")
+    fun getUserById(@Path("id") id: Long): Call<User>
+
+    @POST("user/update")
+    fun updateUser(@HeaderMap headers: Map<String, String>, @Body updateUserRequest: UpdateUserRequest): Call<User>
 }

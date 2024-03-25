@@ -47,7 +47,7 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("it.sephiroth.android.library.horizontallistview:hlistview:1.2.2")
-    implementation("androidx.core:core-ktx:+")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("com.google.android.gms:play-services-base:18.3.0")
     implementation("com.google.android.gms:play-services-auth:21.0.0")
 
@@ -68,4 +68,5 @@ dependencies {
 // https://mvnrepository.com/artifact/com.squareup.retrofit2/adapter-rxjava
     implementation("com.squareup.retrofit2:adapter-rxjava:2.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    implementation("io.insert-koin:koin-android:3.5.3")
 }

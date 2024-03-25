@@ -1,6 +1,5 @@
 package com.spm.vasylyshyn.counterdisplayapp.adapter
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Color
 import android.util.Log
@@ -23,7 +22,7 @@ class LastDataOfDeviceAdapter(context: Activity, devices: ArrayList<Device>) : A
     context, 0, devices
 ) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        @SuppressLint("ViewHolder") val listView = LayoutInflater.from(
+        val listView = LayoutInflater.from(
             context
         ).inflate(
             R.layout.item_data, parent, false

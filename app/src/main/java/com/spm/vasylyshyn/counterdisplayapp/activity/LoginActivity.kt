@@ -2,6 +2,7 @@ package com.spm.vasylyshyn.counterdisplayapp.activity
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -11,20 +12,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.spm.vasylyshyn.counterdisplayapp.API_URL_PATH
 import com.spm.vasylyshyn.counterdisplayapp.R
 import com.spm.vasylyshyn.counterdisplayapp.response.JWTTokenSuccessResponse
 import com.spm.vasylyshyn.counterdisplayapp.response.LoginRequest
 import com.spm.vasylyshyn.counterdisplayapp.service.AuthService
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
+import org.koin.android.ext.android.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class LoginActivity : AppCompatActivity() {
+    private val apiService: AuthService by inject()
+    private val sharedPreferences: SharedPreferences by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -43,12 +43,7 @@ class LoginActivity : AppCompatActivity() {
                 ) { dialog, _ -> dialog.dismiss() }
                 alertDialog.show()
             } else {
-                val retrofit = Retrofit.Builder()
-                    .baseUrl(API_URL_PATH)
-                    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-                    .build()
                 val loginRequest = LoginRequest(login.text.toString(), password.text.toString())
-                val apiService = retrofit.create(AuthService::class.java)
 
                 apiService.authenticateUser(loginRequest).enqueue(object : Callback<JWTTokenSuccessResponse> {
                     override fun onResponse(
@@ -60,6 +55,10 @@ class LoginActivity : AppCompatActivity() {
                             Log.e("CounterDisplayApp.LoginActivity", "authenticateUser failed due to response.body() == null")
                             return
                         }
+
+                        val edit = sharedPreferences.edit()
+                        edit.putString("token", body.token)
+                        edit.apply()
                         token = body.token
                         val intent = Intent(applicationContext, MainActivity::class.java)
                         Log.i("CounterDisplayApp.LoginActivity", "authenticateUser successful")
