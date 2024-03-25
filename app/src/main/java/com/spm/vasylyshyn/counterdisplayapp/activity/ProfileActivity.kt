@@ -11,7 +11,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.spm.vasylyshyn.counterdisplayapp.R
 import org.koin.android.ext.android.inject
 
-
 class ProfileActivity : AppCompatActivity() {
     private val sharedPreferences: SharedPreferences by inject()
 

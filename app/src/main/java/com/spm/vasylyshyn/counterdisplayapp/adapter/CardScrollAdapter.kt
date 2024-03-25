@@ -1,8 +1,5 @@
-@file:Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
-
 package com.spm.vasylyshyn.counterdisplayapp.adapter
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -24,11 +21,11 @@ import com.spm.vasylyshyn.counterdisplayapp.fragment.MainFragment
 import java.lang.String
 import kotlin.Int
 
-class CardScrollAdapter internal constructor(context: Activity, devices: List<Device>, private val mainFragment: MainFragment) :
+class CardScrollAdapter internal constructor(context: Activity, devices: List<Device>, private val mainFragment: MainFragment):
     ArrayAdapter<Device?>(context, 0, devices as List<Device?>) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        @SuppressLint("ViewHolder") val listItemView = LayoutInflater.from(
+        val listItemView = LayoutInflater.from(
             context
         ).inflate(
             R.layout.item_device, parent, false

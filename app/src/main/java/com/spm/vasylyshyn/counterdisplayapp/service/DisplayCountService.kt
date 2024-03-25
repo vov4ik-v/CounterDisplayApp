@@ -11,9 +11,11 @@ import retrofit2.http.Query
 
 interface DisplayCountService {
     @GET("display_count/getDisplayCountsByDeviceNumber/{deviceNumber}")
-    fun getDisplayCountsByDeviceNumber(@Path("deviceNumber") deviceNumber: Long  ): Call<List<Device>>
+    fun getDisplayCountsByDeviceNumber(@Path("deviceNumber") deviceNumber: Long): Call<List<Device>>
+
     @GET("display_count/getAllDisplayCounts")
     fun getAllDisplayCounts(): Call<List<Device>>
+
     @POST("display_count/addDisplayCount")
-    fun addDisplayCount(@Body displayCountDto: DisplayCountDto, @Query("device_id") deviceId:Long  ) : Call<Unit>
+    fun addDisplayCount(@Body displayCountDto: DisplayCountDto, @Query("device_id") deviceId: Long): Call<Unit>
 }
