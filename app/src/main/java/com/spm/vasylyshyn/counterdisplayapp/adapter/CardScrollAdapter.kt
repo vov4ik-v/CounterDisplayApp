@@ -1,3 +1,5 @@
+@file:Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
+
 package com.spm.vasylyshyn.counterdisplayapp.adapter
 
 import android.annotation.SuppressLint
@@ -17,13 +19,13 @@ import com.spm.vasylyshyn.counterdisplayapp.R
 import com.spm.vasylyshyn.counterdisplayapp.activity.SettingsDeviceActivity
 import com.spm.vasylyshyn.counterdisplayapp.enity.Device
 import com.spm.vasylyshyn.counterdisplayapp.enums.TypeDevice
-import com.spm.vasylyshyn.counterdisplayapp.fragment.MainFragment.Companion.uploadDevice
+import com.spm.vasylyshyn.counterdisplayapp.fragment.MainFragment
+//TODO: Change for kotlin.String
 import java.lang.String
 import kotlin.Int
 
-class CardScrollAdapter internal constructor(context: Activity, devices: List<Device>) :
+class CardScrollAdapter internal constructor(context: Activity, devices: List<Device>, private val mainFragment: MainFragment) :
     ArrayAdapter<Device?>(context, 0, devices as List<Device?>) {
-
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         @SuppressLint("ViewHolder") val listItemView = LayoutInflater.from(
@@ -50,12 +52,12 @@ class CardScrollAdapter internal constructor(context: Activity, devices: List<De
             nameDevice.text = currentDevice.address
         }
         val settingButton: ImageButton = listItemView.findViewById(R.id.settingButton)
-        settingButton.setOnClickListener{
-            val serialNumber:TextView = listItemView.findViewById(R.id.serialNumberDeviceOnItem)
-            uploadDevice { devices ->
+        settingButton.setOnClickListener {
+            val serialNumber: TextView = listItemView.findViewById(R.id.serialNumberDeviceOnItem)
+            mainFragment.uploadDevice { devices ->
                 for (i in devices) {
-                    if (i.serialNumber === Integer.valueOf(serialNumber.text.toString())) {
-                        Log.d("ok", String.valueOf(i.typeDevice))
+                    if (runCatching { i.serialNumber == Integer.valueOf(serialNumber.text.toString()) }.getOrElse { false }) {
+                        Log.d("CounterDisplayApp.CardScrollAdapter", "Type device uploaded: ${String.valueOf(i.typeDevice)}")
                         val intent1 = Intent(context, SettingsDeviceActivity::class.java)
                         intent1.putExtra("serialNumber", i.serialNumber)
                         intent1.putExtra("price", i.price)
@@ -63,15 +65,13 @@ class CardScrollAdapter internal constructor(context: Activity, devices: List<De
                         intent1.putExtra("cantoraName", i.cantoraName)
                         intent1.putExtra("address", i.address)
                         intent1.putExtra("frequency", i.frequency)
-                        startActivity(context,intent1, Bundle())
+                        startActivity(context, intent1, Bundle())
                         break
                     }
                 }
             }
-
-
         }
-        return listItemView
 
+        return listItemView
     }
 }

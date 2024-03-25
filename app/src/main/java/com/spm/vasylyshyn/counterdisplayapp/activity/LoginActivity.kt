@@ -11,41 +11,43 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.spm.vasylyshyn.counterdisplayapp.API_URL_PATH
 import com.spm.vasylyshyn.counterdisplayapp.R
 import com.spm.vasylyshyn.counterdisplayapp.response.JWTTokenSuccessResponse
 import com.spm.vasylyshyn.counterdisplayapp.response.LoginRequest
 import com.spm.vasylyshyn.counterdisplayapp.service.AuthService
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val login_btn: Button = findViewById(R.id.login_btn)
-        val reg_btn:Button = findViewById(R.id.reg_btn)
-        val login_google_btn: Button = findViewById(R.id.google_login_btn)
+        val loginBtn: Button = findViewById(R.id.login_btn)
+        val regBtn: Button = findViewById(R.id.reg_btn)
+        val loginGoogleBtn: Button = findViewById(R.id.google_login_btn)
         val password: EditText = findViewById(R.id.passwordEditText)
         val login: EditText = findViewById(R.id.logibEditText)
-        login_btn.setOnClickListener {
+        loginBtn.setOnClickListener {
             if (login.text.isEmpty() || password.text.isEmpty()) {
                 val alertDialog = AlertDialog.Builder(this@LoginActivity).create()
                 alertDialog.setTitle("Увага")
                 alertDialog.setMessage("Введіть пошту і пароль.")
                 alertDialog.setButton(
                     AlertDialog.BUTTON_NEUTRAL, "OK"
-                ) { dialog, whichw -> dialog.dismiss() }
+                ) { dialog, _ -> dialog.dismiss() }
                 alertDialog.show()
             } else {
                 val retrofit = Retrofit.Builder()
                     .baseUrl(API_URL_PATH)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
                     .build()
-                val loginRequest:LoginRequest = LoginRequest(login.text.toString(), password.text.toString())
+                val loginRequest = LoginRequest(login.text.toString(), password.text.toString())
                 val apiService = retrofit.create(AuthService::class.java)
 
                 apiService.authenticateUser(loginRequest).enqueue(object : Callback<JWTTokenSuccessResponse> {
@@ -53,27 +55,33 @@ class LoginActivity : AppCompatActivity() {
                         call: Call<JWTTokenSuccessResponse>,
                         response: Response<JWTTokenSuccessResponse>
                     ) {
-                        token = response.body()?.token.toString()
+                        val body = response.body()
+                        if (body == null) {
+                            Log.e("CounterDisplayApp.LoginActivity", "authenticateUser failed due to response.body() == null")
+                            return
+                        }
+                        token = body.token
                         val intent = Intent(applicationContext, MainActivity::class.java)
+                        Log.i("CounterDisplayApp.LoginActivity", "authenticateUser successful")
                         startActivity(intent)
                     }
 
                     override fun onFailure(call: Call<JWTTokenSuccessResponse>, t: Throwable) {
-                        Log.d("Test response", t.message.toString())
+                        Log.e("CounterDisplayApp.LoginActivity", "authenticateUser failed with message: ${t.message.toString()}")
                     }
                 })
             }
         }
-        reg_btn.setOnClickListener{
+        regBtn.setOnClickListener {
             val intent = Intent(applicationContext, RegisterActivity::class.java)
             startActivity(intent)
         }
-        login_google_btn.setOnClickListener {
+        loginGoogleBtn.setOnClickListener {
             val gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 // TODO: add .requestIdToken("MyToken")
                 .requestEmail()
                 .build()
-            val mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+            val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
             val signInIntent = mGoogleSignInClient.signInIntent
             startActivityForResult(signInIntent, 9001)
         }
@@ -91,12 +99,12 @@ class LoginActivity : AppCompatActivity() {
                 val intent = Intent(applicationContext, MainActivity::class.java)
                 startActivity(intent)
             }.addOnFailureListener { exception ->
-                Log.w("Error getting documents: ", exception)
+                Log.e("CounterDisplayApp.LoginActivity", "Error getting google sign in info: $exception")
             }
         }
     }
 
     companion object {
-        var token:String = ""
+        var token: String = ""
     }
 }

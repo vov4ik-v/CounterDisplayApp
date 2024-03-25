@@ -1,6 +1,10 @@
 package com.spm.vasylyshyn.counterdisplayapp.response
 
-data class ApiResponse (
-    val message:String,
-    val success:Boolean
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class ApiResponse(
+    val success: Boolean,
+    val message: String,
+    val timestamp: String
 )
