@@ -69,4 +69,13 @@ dependencies {
     implementation("com.squareup.retrofit2:adapter-rxjava:2.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     implementation("io.insert-koin:koin-android:3.5.3")
+    implementation("io.ktor:ktor-client-android:1.5.0")
+    implementation("io.ktor:ktor-client-serialization:1.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+    implementation("io.ktor:ktor-client-logging-jvm:1.5.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+
+    // Koin
+    implementation("io.insert-koin:koin-androidx-viewmodel:3.4.0")
 }

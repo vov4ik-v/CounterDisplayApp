@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -16,10 +17,8 @@ import com.spm.vasylyshyn.counterdisplayapp.R
 import com.spm.vasylyshyn.counterdisplayapp.response.JWTTokenSuccessResponse
 import com.spm.vasylyshyn.counterdisplayapp.response.LoginRequest
 import com.spm.vasylyshyn.counterdisplayapp.service.AuthService
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private val apiService: AuthService by inject()
@@ -43,32 +42,24 @@ class LoginActivity : AppCompatActivity() {
                 ) { dialog, _ -> dialog.dismiss() }
                 alertDialog.show()
             } else {
-                val loginRequest = LoginRequest(login.text.toString(), password.text.toString())
-
-                apiService.authenticateUser(loginRequest).enqueue(object : Callback<JWTTokenSuccessResponse> {
-                    override fun onResponse(
-                        call: Call<JWTTokenSuccessResponse>,
-                        response: Response<JWTTokenSuccessResponse>
-                    ) {
-                        val body = response.body()
-                        if (body == null) {
-                            Log.e("CounterDisplayApp.LoginActivity", "authenticateUser failed due to response.body() == null")
-                            return
+                val loginRequest = LoginRequest(password.text.toString(), login.text.toString())
+                lifecycleScope.launch {
+                    val result: Result<JWTTokenSuccessResponse> = apiService.authenticateUser(loginRequest)
+                    result.fold(
+                        onSuccess = {
+                            Log.i("CounterDisplayApp.LoginActivity", "authenticateUser successful")
+                            val edit = sharedPreferences.edit()
+                            edit.putString("token", it.token)
+                            edit.apply()
+                            token = it.token
+                            val intent = Intent(applicationContext, MainActivity::class.java)
+                            startActivity(intent)
+                        },
+                        onFailure = {
+                            Log.e("CounterDisplayApp.LoginActivity", "authenticateUser failed with message: ${it.message}")
                         }
-
-                        val edit = sharedPreferences.edit()
-                        edit.putString("token", body.token)
-                        edit.apply()
-                        token = body.token
-                        val intent = Intent(applicationContext, MainActivity::class.java)
-                        Log.i("CounterDisplayApp.LoginActivity", "authenticateUser successful")
-                        startActivity(intent)
-                    }
-
-                    override fun onFailure(call: Call<JWTTokenSuccessResponse>, t: Throwable) {
-                        Log.e("CounterDisplayApp.LoginActivity", "authenticateUser failed with message: ${t.message.toString()}")
-                    }
-                })
+                    )
+                }
             }
         }
         regBtn.setOnClickListener {
