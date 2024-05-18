@@ -64,7 +64,7 @@ class CounterDisplayApplication : Application() {
                 header(HttpHeaders.ContentType, ContentType.Application.Json)
                 url {
                     protocol = URLProtocol.HTTP
-                    host = "192.168.0.103"
+                    host = "https://counterdisplayserver-26598a91a1e5.herokuapp.com/"
                     port = 8088
                 }
             }
