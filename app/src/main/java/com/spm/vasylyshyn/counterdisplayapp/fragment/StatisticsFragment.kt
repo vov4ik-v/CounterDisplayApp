@@ -15,6 +15,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.charts.LineChart
@@ -38,19 +39,6 @@ private const val ARG_PARAM2 = "param2"
 
 class StatisticsFragment : Fragment() {
 
-    private var param1: String? = null
-    private var param2: String? = null
-    private var arrayDevice = ArrayList<Device>()
-    private var horizontalLIstOfLastData: HListView? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -70,7 +58,7 @@ class StatisticsFragment : Fragment() {
             }
         }
 
-        horizontalLIstOfLastData = view.findViewById(R.id.lastDataOfDevice)
+        val horizontalLIstOfLastData: HListView? = view.findViewById(R.id.lastDataOfDevice)
         val chooseAdress = view.findViewById<Spinner>(R.id.chooseAdress)
         chooseAdress.prompt = "Виберіть адресу"
         val arrayAdress = arrayOf("Стрийська 81/17", "Стрийська 115", "Гашека 13")
@@ -79,7 +67,7 @@ class StatisticsFragment : Fragment() {
         if ((activity as MainActivity?)?.isOnline(requireContext()) == true) {
             getData()
         }
-        val arrayAdapter: ArrayAdapter<*> = LastDataOfDeviceAdapter(requireActivity(), arrayDevice)
+        val arrayAdapter: ArrayAdapter<*> = LastDataOfDeviceAdapter(requireActivity(), listOf())
         horizontalLIstOfLastData?.adapter = arrayAdapter
         return view
     }
@@ -127,10 +115,10 @@ class StatisticsFragment : Fragment() {
                 )
 
                 val dataSetThisYear = LineDataSet(entriesThisYear, "Цього року").apply {
-                    color = ColorTemplate.COLORFUL_COLORS[0]
+                    color = ColorTemplate.LIBERTY_COLORS[0]
                 }
                 val dataSetLastYear = LineDataSet(entriesLastYear, "Минулого року").apply {
-                    color = ColorTemplate.COLORFUL_COLORS[1]
+                    color = ColorTemplate.JOYFUL_COLORS[0]
                 }
 
                 val lineData = LineData(dataSetThisYear, dataSetLastYear)

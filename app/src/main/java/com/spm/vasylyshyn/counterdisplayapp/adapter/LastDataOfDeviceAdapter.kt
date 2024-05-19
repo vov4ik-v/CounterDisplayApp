@@ -1,6 +1,6 @@
 package com.spm.vasylyshyn.counterdisplayapp.adapter
 
-import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,7 +18,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.spm.vasylyshyn.counterdisplayapp.R
 import com.spm.vasylyshyn.counterdisplayapp.enity.Device
 
-class LastDataOfDeviceAdapter(context: Activity, devices: ArrayList<Device>) : ArrayAdapter<Device>(
+class LastDataOfDeviceAdapter(context: Context, devices: List<Device>) : ArrayAdapter<Device>(
     context, 0, devices
 ) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
